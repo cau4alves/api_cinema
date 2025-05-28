@@ -12,12 +12,12 @@ public class UserService {
     private UserRepository userRepository;
 
     public UserModel execute(UserModel userModel) {
-        var user = this.userRepository.findByUsernameOeEmail(userModel.getUsername(), userModel.getEmail())
-                .orElseThrow(
-                        () -> {
-                            throw new RuntimeException("Usuário jáencontrado");
-                        }
-                );
+        this.userRepository.findByUsernameOrEmail(userModel.getUsername(), userModel.getEmail())
+            .ifPresent(
+                    (user) -> {
+                        throw new RuntimeException("Usuário já encontrado");
+                    }
+            );
 
         return this.userRepository.save(userModel);
     }
