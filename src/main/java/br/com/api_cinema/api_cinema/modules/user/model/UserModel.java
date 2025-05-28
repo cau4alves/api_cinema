@@ -25,10 +25,9 @@ public class UserModel {
 
     @JoinColumn(name = "id_filme", insertable = false, updatable = false)
     @OneToMany
-    private FilmModel filmModel;
+    private FilmModel[] filmModel;
 
     @Column(name = "id_filme")
-    @Nullable
     private Integer idFilm;
 
     @Column(name = "created_at")
