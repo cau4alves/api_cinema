@@ -3,12 +3,14 @@ package br.com.api_cinema.api_cinema.modules.user.model;
 import br.com.api_cinema.api_cinema.modules.film.model.FilmModel;
 import jakarta.annotation.Nullable;
 import jakarta.persistence.*;
+import lombok.Data;
 import org.hibernate.annotations.CreationTimestamp;
 
 import java.time.LocalDateTime;
 import java.util.UUID;
 
 @Entity(name = "user")
+@Data
 public class UserModel {
 
     @Id
