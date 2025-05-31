@@ -1,6 +1,7 @@
 package br.com.api_cinema.api_cinema.modules.user.model;
 
 import br.com.api_cinema.api_cinema.modules.film.model.FilmModel;
+import br.com.api_cinema.api_cinema.modules.payment.model.PaymentModel;
 import jakarta.annotation.Nullable;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Null;
@@ -24,14 +25,14 @@ public class UserModel {
 
     private String password;
 
-    @JoinColumn(name = "id_filme", insertable = false, updatable = false)
+    @JoinColumn(name = "id_payment", insertable = false, updatable = false)
     @OneToMany
     @Nullable
-    private FilmModel[] filmModel;
+    private PaymentModel paymentModel;
 
-    @Column(name = "id_filme")
+    @Column(name = "id_payment")
     @Nullable
-    private Integer idFilm;
+    private Integer idPayment;
 
     @Column(name = "created_at")
     @CreationTimestamp
