@@ -19,10 +19,20 @@ public class FilmService {
                         }
                 );
 
-        var horaDuracao = filmModel.getDuration().getHour();
-        var minDuracao = filmModel.getDuration().getMinute();
-        var secDuracao = filmModel.getDuration().getSecond();
-        var endSession = filmModel.getStartSession().plusHours(horaDuracao).plusMinutes(minDuracao).plusSeconds(secDuracao);
+        var startSession = filmModel.getStartSession();
+        var duration = filmModel.getDuration();
+        var endSession = filmModel.getStartSession().plusHours(duration.getHour()).plusMinutes(duration.getMinute()).plusSeconds(duration.getSecond());
+
+        boolean existsOverlap = filmRepository.existsByRoomAndIdCinemaAndStartSessionLessThanAndEndSessionGreaterThan(
+                filmModel.getRoom(),
+                filmModel.getIdCinema(),
+                endSession,
+                startSession
+        );
+
+        if (existsOverlap) {
+            throw new RuntimeException("Já existe uma sessão nesse intervalo!");
+        }
         filmModel.setEndSession(endSession);
 
         return this.filmRepository.save(filmModel);

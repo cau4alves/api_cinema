@@ -9,4 +9,7 @@ import java.util.UUID;
 
 public interface FilmRepository extends JpaRepository<FilmModel, Integer> {
     Optional<FilmModel> findByStartSessionAndRoomAndIdCinema(LocalDateTime hora, Integer room, UUID idCinema);
+    boolean existsByRoomAndIdCinemaAndStartSessionLessThanAndEndSessionGreaterThan(
+            Integer room, UUID idCinema, LocalDateTime endSession, LocalDateTime startSession
+    );
 }

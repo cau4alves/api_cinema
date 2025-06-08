@@ -13,10 +13,10 @@ public class CinemaService {
     private CinemaRepository cinemaRepository;
 
     public CinemaModel execute(CinemaModel cinemaModel) {
-        this.cinemaRepository.findByAddress(cinemaModel.getAddress())
+        this.cinemaRepository.findByAddressOrName(cinemaModel.getAddress(), cinemaModel.getName())
                 .ifPresent(
                         (user) -> {
-                            throw new RuntimeException("Cinema com mesmo endereço já encontrado");
+                            throw new RuntimeException("Cinema com mesmo endereço/nome já encontrado");
                         }
                 );
 

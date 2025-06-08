@@ -28,7 +28,7 @@ public class UserModel {
     @JoinColumn(name = "id_payment", insertable = false, updatable = false)
     @OneToMany
     @Nullable
-    private PaymentModel paymentModel;
+    private PaymentModel[] paymentModel;
 
     @Column(name = "id_payment")
     @Nullable

@@ -7,5 +7,5 @@ import java.util.Optional;
 import java.util.UUID;
 
 public interface CinemaRepository extends JpaRepository<CinemaModel, UUID> {
-    Optional<CinemaModel> findByAddress(String address);
+    Optional<CinemaModel> findByAddressOrName(String address, String name);
 }
