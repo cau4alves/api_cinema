@@ -1,15 +1,16 @@
-import { Body, Controller, Delete, Get, Param, Patch, Post } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Patch, Post, Query } from '@nestjs/common';
 import { CreateUserDTO } from './dto/create-user.dto';
 import { UserService } from './user.service';
 import { UpdateUserDTO } from './dto/update-user.dto';
+import { PaginationDTO } from 'src/common/dto/pagination.dto';
 
 @Controller('user')
 export class UserController {
     constructor(private readonly userService: UserService) {}
 
     @Get()
-    async listAll() {
-        return await this.userService.listAll()
+    async listAll(@Query() paginationDTO: PaginationDTO) {
+        return await this.userService.listAll(paginationDTO)
     }
 
     @Get(':id')
